@@ -30,7 +30,7 @@
         videos.results?.find(
           (v) => v.type === "Trailer" && v.site === "YouTube",
         ) || null;
-      similares = sim.results?.slice(0, 8) || [];
+      similares = sim.results?.slice(0, 6) || [];
     } catch (e) {
       error = "No se pudo cargar la película";
     } finally {
@@ -68,19 +68,19 @@
 {:else if pelicula}
   <!-- HERO BACKDROP -->
   <div class="relative w-full h-48 md:h-64 overflow-hidden">
-    {#if pelicula.backdrop_path}
-      <img
-        src="{IMG_URL_ORIGINAL}{pelicula.backdrop_path}"
-        alt={pelicula.title}
-        class="w-full h-full object-cover object-top"
-      />
-    {/if}
-    <div
-      class="absolute inset-0 bg-linear-to-b from-transparent via-base-100/60 to-base-100"
-    ></div>
-  </div>
+  {#if pelicula.backdrop_path}
+    <img
+      src="{IMG_URL_ORIGINAL}{pelicula.backdrop_path}"
+      alt={pelicula.title}
+      class="w-full h-full object-cover object-top"
+    />
+  {/if}
+  <div class="absolute inset-0 bg-linear-to-b from-transparent via-base-100/60 to-base-100"></div>
+</div>
 
-  <div class="max-w-6xl mx-auto px-4 -mt-20 relative pb-8">
+<div class="max-w-6xl mx-auto px-4 -mt-20 relative pb-8">
+
+  <div class="max-w-6xl mx-auto px-4 -mt-16 relative pb-8">
     <!-- MAIN INFO -->
     <div class="flex flex-col md:flex-row gap-8 mb-10">
       <!-- POSTER -->
@@ -242,4 +242,5 @@
       </div>
     {/if}
   </div>
+</div>
 {/if}

@@ -37,7 +37,7 @@ import { page } from '$app/stores'
       data = await getPopulares()
     }
 
-    peliculas = data.results
+    peliculas = data.results.slice(0, 20)
   } catch (e) {
     error = 'No se pudieron cargar las películas'
   } finally {
@@ -83,7 +83,7 @@ function getRango(valor) {
   <div class="max-w-7xl mx-auto px-4 py-6">
 
     <!-- Filtro géneros -->
-    <div class="flex flex-wrap gap-2 mb-4">
+    <div class="flex gap-2 mb-4 overflow-x-auto pb-1 scrollbar-none">
       {#each generos as genero}
         <button
           class="btn btn-sm rounded-full {generoActivo === genero.id ? 'btn-error' : 'btn-ghost border border-base-300'}"
@@ -150,7 +150,7 @@ function getRango(valor) {
         <p class="mt-4 text-lg">No se encontraron resultados</p>
       </div>
     {:else}
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-6">
         {#each peliculasFiltradas as pelicula}
           <a href="/pelicula/{pelicula.id}" class="group">
             <div class="card bg-base-200 shadow hover:shadow-xl transition-all duration-200 hover:-translate-y-1 overflow-hidden">
